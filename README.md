@@ -13,4 +13,4 @@ mkdocs serve
 
 Sube **todo el contenido de esta carpeta** a la raíz del repositorio. El `mkdocs.yml` organiza la navegación por bloques. El índice de la derecha de cada página se genera automáticamente a partir de los encabezados `##` y `###`.
 
-**Importante:** elimina del repositorio los Markdown antiguos con nombres como `08-pom-avanzado.md`, `13-recursos.md`, `14-pruebas.md`, `20-avanzado.md` y los archivos con numeración antigua. Para evitar páginas huérfanas, lo más seguro es sustituir completamente la carpeta `docs/` por la incluida en este ZIP.
+
