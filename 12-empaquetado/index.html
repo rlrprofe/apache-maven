@@ -1,0 +1,1991 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Aprender Apache Maven y utilizarlo desde VS Code, Eclipse e IntelliJ IDEA">
+      
+      
+        <meta name="author" content="Material didáctico DAM/DAW">
+      
+      
+        <link rel="canonical" href="https://rlrprofe.github.io/curso-apache-maven/12-empaquetado/">
+      
+      
+        <link rel="prev" href="../11-plugins/">
+      
+      
+        <link rel="next" href="../13-vscode/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>12 · Empaquetado con Maven - Apache Maven · Minicurso práctico</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#12-empaquetado-con-maven" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Apache Maven · Minicurso práctico" class="md-header__button md-logo" aria-label="Apache Maven · Minicurso práctico" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apache Maven · Minicurso práctico
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              12 · Empaquetado con Maven
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/rlrprofe/curso-apache-maven" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rlrprofe/curso-apache-maven
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apache Maven · Minicurso práctico" class="md-nav__button md-logo" aria-label="Apache Maven · Minicurso práctico" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apache Maven · Minicurso práctico
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/rlrprofe/curso-apache-maven" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rlrprofe/curso-apache-maven
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1 · Fundamentos e instalación
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 1 · Fundamentos e instalación
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Qué es Apache Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-requisitos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Requisitos y preparación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-instalacion-windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Instalación en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-instalacion-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Instalación en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-primer-proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Primer proyecto Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-estructura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Estructura de proyectos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2 · Funcionamiento de Maven
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 2 · Funcionamiento de Maven
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-pom-basico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · El archivo pom.xml
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-ciclo-vida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Ciclo de vida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-dependencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Dependencias y repositorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Comandos esenciales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Plugins de Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Empaquetado con Maven
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Empaquetado con Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#121-que-es-empaquetar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1. ¿Qué es empaquetar?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.1. ¿Qué es empaquetar?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-compilar-y-empaquetar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1. Compilar y empaquetar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122-tres-tipos-de-jar-que-debemos-distinguir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2. Tres tipos de JAR que debemos distinguir
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123-la-clase-principal-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3. La clase principal: main
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#124-que-es-el-manifiesto-manifestmf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4. ¿Qué es el manifiesto MANIFEST.MF?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.4. ¿Qué es el manifiesto MANIFEST.MF?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-configurar-maven-jar-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2. Configurar Maven JAR Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-generar-y-ejecutar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3. Generar y ejecutar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#125-que-ocurre-si-usamos-una-biblioteca-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.5. ¿Qué ocurre si usamos una biblioteca externa?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#126-crear-un-jar-con-dependencias-usando-maven-shade-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.6. Crear un JAR con dependencias usando Maven Shade Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.6. Crear un JAR con dependencias usando Maven Shade Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-probar-el-proyecto-con-gson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4. Probar el proyecto con Gson
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#127-como-se-entrega-una-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.7. ¿Cómo se entrega una aplicación?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#128-practica-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.8. Práctica guiada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.8. Práctica guiada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autoevaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autoevaluación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentacion-oficial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentación oficial
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3 · Maven desde distintos IDE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 3 · Maven desde distintos IDE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-vscode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Maven en VS Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-eclipse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Maven en Eclipse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-intellij/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · Maven en IntelliJ IDEA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 4 · Prácticas y resolución de problemas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 4 · Prácticas y resolución de problemas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-wrapper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Maven Wrapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-diagnostico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · Errores y diagnóstico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-buenas-practicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Buenas prácticas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-practicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Prácticas guiadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-proyecto-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 · Proyecto integrador
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-evaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 · Autoevaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Material de consulta
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Material de consulta
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anexo-glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anexo-chuleta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chuleta de comandos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../descargas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descargas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#121-que-es-empaquetar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1. ¿Qué es empaquetar?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.1. ¿Qué es empaquetar?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-compilar-y-empaquetar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1. Compilar y empaquetar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122-tres-tipos-de-jar-que-debemos-distinguir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2. Tres tipos de JAR que debemos distinguir
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123-la-clase-principal-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3. La clase principal: main
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#124-que-es-el-manifiesto-manifestmf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4. ¿Qué es el manifiesto MANIFEST.MF?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.4. ¿Qué es el manifiesto MANIFEST.MF?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-configurar-maven-jar-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2. Configurar Maven JAR Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-generar-y-ejecutar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3. Generar y ejecutar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#125-que-ocurre-si-usamos-una-biblioteca-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.5. ¿Qué ocurre si usamos una biblioteca externa?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#126-crear-un-jar-con-dependencias-usando-maven-shade-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.6. Crear un JAR con dependencias usando Maven Shade Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.6. Crear un JAR con dependencias usando Maven Shade Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-probar-el-proyecto-con-gson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4. Probar el proyecto con Gson
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#127-como-se-entrega-una-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.7. ¿Cómo se entrega una aplicación?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#128-practica-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.8. Práctica guiada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.8. Práctica guiada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autoevaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autoevaluación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentacion-oficial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentación oficial
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="12-empaquetado-con-maven">12. Empaquetado con Maven<a class="headerlink" href="#12-empaquetado-con-maven" title="Permanent link">&para;</a></h1>
+<p>En los capítulos anteriores hemos utilizado <code>mvn compile</code> y <code>mvn test</code>. Ahora nos preguntamos: <strong>¿qué entrega Maven cuando terminamos de construir el proyecto?</strong> La respuesta depende del tipo de empaquetado, indicado por <code>packaging</code> en el <code>pom.xml</code>. En este capítulo nos centraremos en el caso más habitual de las prácticas: un proyecto Java que genera un JAR.</p>
+<p><strong>El objetivo no es aprender a distribuir aplicaciones Java de todas las formas posibles</strong>, sino comprender qué hace Maven durante la fase <code>package</code>, qué plugins intervienen y cómo inspeccionar el resultado.</p>
+<p><strong>Objetivos:</strong> comprender qué produce <code>mvn package</code>, distinguir un JAR normal de uno ejecutable y aprender a incluir dependencias externas cuando sea necesario.</p>
+<h2 id="121-que-es-empaquetar">12.1. ¿Qué es empaquetar?<a class="headerlink" href="#121-que-es-empaquetar" title="Permanent link">&para;</a></h2>
+<p>En un proyecto Java de consola normalmente encontramos <code>&lt;packaging&gt;jar&lt;/packaging&gt;</code> o no indicamos ningún <code>packaging</code>, en cuyo caso Maven utiliza <code>jar</code> por defecto. Para otros tipos de proyecto existen formatos como <code>war</code>, pero no los estudiaremos aquí.</p>
+<p>Durante <code>mvn package</code>, Maven llega a la fase de empaquetado después de ejecutar las fases previas necesarias. El <strong>Maven JAR Plugin</strong> es el encargado de crear el JAR en un proyecto de tipo <code>jar</code>. La fase y el plugin no son lo mismo: la fase indica <strong>cuándo</strong>, y el plugin aporta <strong>la tarea</strong>.</p>
+<p>Durante el desarrollo tenemos archivos <code>.java</code>, recursos y bibliotecas. Para entregar nuestro programa suele ser útil reunir el código compilado en un <strong>artefacto</strong>. En proyectos Java sencillos, Maven suele crear un archivo <strong>JAR</strong> (<em>Java ARchive</em>).</p>
+<div class="highlight"><pre><span></span><code>Proyecto Java
+   ├── src/main/java       → clases fuente
+   ├── src/main/resources  → recursos
+   └── pom.xml             → configuración
+              │
+              ▼ mvn package
+        target/miapp-1.0-SNAPSHOT.jar
+</code></pre></div>
+<p>Un JAR es un archivo ZIP con una estructura definida. Puede contener clases <code>.class</code>, recursos y un directorio <code>META-INF</code>.</p>
+<h3 id="paso-1-compilar-y-empaquetar">Paso 1. Compilar y empaquetar<a class="headerlink" href="#paso-1-compilar-y-empaquetar" title="Permanent link">&para;</a></h3>
+<p>Abre una terminal en la carpeta donde está <code>pom.xml</code>:</p>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>clean<span class="w"> </span>package
+</code></pre></div>
+<ul>
+<li><code>clean</code> elimina los resultados anteriores de <code>target</code>.</li>
+<li><code>package</code> ejecuta las fases necesarias hasta empaquetar, incluidas compilación y pruebas cuando están configuradas.</li>
+<li>El resultado habitual se guarda en <code>target/</code>.</li>
+</ul>
+<p>Si utilizas el proyecto descargable <code>01-hola-maven</code>, encontrarás un archivo parecido a:</p>
+<div class="highlight"><pre><span></span><code>target/hola-maven-1.0-SNAPSHOT.jar
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Importante</p>
+<p>El nombre exacto depende de <code>artifactId</code>, <code>version</code> y de la configuración de empaquetado. Comprueba el contenido real de tu carpeta <code>target</code> antes de ejecutar el JAR.</p>
+</div>
+<h2 id="122-tres-tipos-de-jar-que-debemos-distinguir">12.2. Tres tipos de JAR que debemos distinguir<a class="headerlink" href="#122-tres-tipos-de-jar-que-debemos-distinguir" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Qué contiene</th>
+<th>Cómo se ejecuta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>JAR normal</strong></td>
+<td>Clases y recursos de nuestro proyecto</td>
+<td>Se usa como biblioteca o se ejecuta indicando clase y classpath si procede</td>
+</tr>
+<tr>
+<td><strong>JAR ejecutable</strong></td>
+<td>Clases y un manifiesto que indica la clase principal</td>
+<td><code>java -jar archivo.jar</code>, siempre que tenga acceso a las dependencias necesarias</td>
+</tr>
+<tr>
+<td><strong>JAR con dependencias</strong> (<em>fat/uber JAR</em>)</td>
+<td>Nuestro código y bibliotecas externas empaquetadas juntas</td>
+<td>Normalmente <code>java -jar archivo.jar</code> si está configurado correctamente</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Un JAR ejecutable no tiene por qué contener las dependencias externas.</strong> Esta es la distinción fundamental.</p>
+<h2 id="123-la-clase-principal-main">12.3. La clase principal: <code>main</code><a class="headerlink" href="#123-la-clase-principal-main" title="Permanent link">&para;</a></h2>
+<p>Para iniciar una aplicación Java necesitamos un punto de entrada. Por ejemplo, en <code>src/main/java/es/dam/maven/App.java</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">es.dam.maven</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">App</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"¡Hola desde Maven!"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>El nombre completo de la clase es <code>es.dam.maven.App</code> porque combina el paquete y el nombre de la clase.</p>
+<h2 id="124-que-es-el-manifiesto-manifestmf">12.4. ¿Qué es el manifiesto <code>MANIFEST.MF</code>?<a class="headerlink" href="#124-que-es-el-manifiesto-manifestmf" title="Permanent link">&para;</a></h2>
+<p>Dentro del JAR puede existir el archivo <code>META-INF/MANIFEST.MF</code>. Para ejecutar un JAR con <code>java -jar</code>, el manifiesto debe indicar una clase principal válida mediante <code>Main-Class</code>.</p>
+<p>Ejemplo conceptual de contenido:</p>
+<div class="highlight"><pre><span></span><code>Manifest-Version: 1.0
+Main-Class: es.dam.maven.App
+</code></pre></div>
+<p>No necesitamos escribir ese archivo manualmente: podemos pedirle a Maven que lo genere.</p>
+<h3 id="paso-2-configurar-maven-jar-plugin">Paso 2. Configurar Maven JAR Plugin<a class="headerlink" href="#paso-2-configurar-maven-jar-plugin" title="Permanent link">&para;</a></h3>
+<p>En <code>pom.xml</code>, añade <strong>dentro de <code>&lt;project&gt;</code></strong>, al mismo nivel que <code>&lt;properties&gt;</code>, esta sección:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;build&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;version&gt;</span>3.4.2<span class="nt">&lt;/version&gt;</span>
+<span class="w">            </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">                </span><span class="nt">&lt;archive&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;manifest&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;mainClass&gt;</span>es.dam.maven.App<span class="nt">&lt;/mainClass&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/manifest&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/archive&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div>
+<p><strong>¿Qué hace cada elemento?</strong></p>
+<ul>
+<li><code>&lt;build&gt;</code> contiene opciones de construcción.</li>
+<li><code>&lt;plugins&gt;</code> agrupa herramientas que Maven utiliza.</li>
+<li><code>maven-jar-plugin</code> construye el JAR.</li>
+<li><code>&lt;mainClass&gt;</code> indica qué clase debe arrancar Java.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">No dupliques <code>&lt;build&gt;</code></p>
+<p>Si tu POM ya contiene una sección <code>&lt;build&gt;</code>, <strong>no crees otra</strong>. Añade el plugin a su <code>&lt;plugins&gt;</code> existente. El proyecto descargable <code>01-hola-maven</code> ya incorpora esta configuración, por lo que no necesitas repetirla.</p>
+</div>
+<h3 id="paso-3-generar-y-ejecutar">Paso 3. Generar y ejecutar<a class="headerlink" href="#paso-3-generar-y-ejecutar" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>clean<span class="w"> </span>package
+java<span class="w"> </span>-jar<span class="w"> </span>target/hola-maven-1.0-SNAPSHOT.jar
+</code></pre></div>
+<p>Salida esperada para el ejemplo:</p>
+<div class="highlight"><pre><span></span><code>¡Hola desde Maven!
+</code></pre></div>
+<p>Si tu proyecto se llama de otra forma, sustituye el nombre del JAR por el que se haya generado realmente.</p>
+<h2 id="125-que-ocurre-si-usamos-una-biblioteca-externa">12.5. ¿Qué ocurre si usamos una biblioteca externa?<a class="headerlink" href="#125-que-ocurre-si-usamos-una-biblioteca-externa" title="Permanent link">&para;</a></h2>
+<p>Imagina que <code>App</code> utiliza Gson:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">com.google.gson.Gson</span><span class="p">;</span>
+</code></pre></div>
+<p>Maven puede compilar el proyecto porque resuelve la dependencia durante la construcción. Sin embargo, el <strong>JAR normal no suele incluir el código de Gson</strong>. Si lo ejecutamos aisladamente con <code>java -jar</code>, podría aparecer:</p>
+<div class="highlight"><pre><span></span><code>java.lang.NoClassDefFoundError: com/google/gson/Gson
+</code></pre></div>
+<p>El error significa que Java no encuentra una clase necesaria <strong>durante la ejecución</strong>.</p>
+<p><strong>¿Por qué funciona en el IDE y falla fuera?</strong> Porque el IDE y los plugins de ejecución pueden construir un <em>classpath</em> con las dependencias; <code>java -jar</code> no las incorpora automáticamente.</p>
+<h2 id="126-crear-un-jar-con-dependencias-usando-maven-shade-plugin">12.6. Crear un JAR con dependencias usando Maven Shade Plugin<a class="headerlink" href="#126-crear-un-jar-con-dependencias-usando-maven-shade-plugin" title="Permanent link">&para;</a></h2>
+<p>Para distribuir una aplicación pequeña en un solo archivo, podemos utilizar <strong>Maven Shade Plugin</strong>. Este plugin combina el contenido del proyecto y de sus dependencias en un JAR.</p>
+<p>Ejemplo de configuración:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;build&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>maven-shade-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;version&gt;</span>3.6.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">            </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">                </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;goal&gt;</span>shade<span class="nt">&lt;/goal&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;transformers&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;transformer</span><span class="w"> </span><span class="na">implementation=</span><span class="s">"org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;mainClass&gt;</span>es.dam.maven.App<span class="nt">&lt;/mainClass&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;/transformer&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/transformers&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/executions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div>
+<p><strong>Interpretación:</strong></p>
+<ol>
+<li>Maven llega a la fase <code>package</code>.</li>
+<li>Ejecuta el objetivo <code>shade</code>.</li>
+<li>Incorpora las dependencias correspondientes al JAR combinado.</li>
+<li>Configura la clase principal en el manifiesto.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Proyecto de ejemplo</p>
+<p>El descargable <strong><code>03-json-gson</code></strong> del curso ya incluye una configuración de Shade. Puedes utilizarlo sin escribir inicialmente toda la configuración anterior.</p>
+</div>
+<h3 id="paso-4-probar-el-proyecto-con-gson">Paso 4. Probar el proyecto con Gson<a class="headerlink" href="#paso-4-probar-el-proyecto-con-gson" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Descarga y descomprime <code>03-json-gson</code> desde la sección <strong>Descargas</strong>.</li>
+<li>Abre la carpeta del proyecto, donde está su <code>pom.xml</code>.</li>
+<li>Ejecuta <code>mvn clean package</code>.</li>
+<li>Examina los archivos generados en <code>target</code>.</li>
+<li>Ejecuta el JAR principal con <code>java -jar</code> usando <strong>su nombre real</strong>.</li>
+<li>Comprueba que funciona fuera del IDE.</li>
+</ol>
+<p>El plugin puede generar también un archivo de respaldo con el JAR original; no confundas ese archivo con el JAR combinado.</p>
+<h2 id="127-como-se-entrega-una-aplicacion">12.7. ¿Cómo se entrega una aplicación?<a class="headerlink" href="#127-como-se-entrega-una-aplicacion" title="Permanent link">&para;</a></h2>
+<p>Para una práctica, puedes entregar el código fuente y el <code>pom.xml</code>, o el artefacto generado si así se solicita. En una distribución real debes valorar:</p>
+<ul>
+<li><strong>Versión de Java requerida</strong> en el equipo de destino (nuestro curso: Java 21).</li>
+<li><strong>Dependencias</strong> incluidas o distribuidas aparte.</li>
+<li><strong>Archivos externos</strong> de configuración, si existen.</li>
+<li><strong>Licencias</strong> de bibliotecas de terceros.</li>
+<li><strong>Instrucciones de ejecución</strong>, por ejemplo en un <code>README.md</code>.</li>
+</ul>
+<p>Un JAR no incluye necesariamente una máquina virtual Java: el destinatario suele necesitar una versión compatible de Java instalada.</p>
+<h2 id="128-practica-guiada">12.8. Práctica guiada<a class="headerlink" href="#128-practica-guiada" title="Permanent link">&para;</a></h2>
+<p><strong>Parte A.</strong> Utiliza <code>01-hola-maven</code>:</p>
+<ol>
+<li>Ejecuta <code>mvn clean package</code>.</li>
+<li>Localiza el JAR.</li>
+<li>Ejecútalo con <code>java -jar</code>.</li>
+<li>Cambia el mensaje de <code>App</code>, vuelve a empaquetar y comprueba el resultado.</li>
+</ol>
+<p><strong>Parte B.</strong> Utiliza <code>03-json-gson</code>:</p>
+<ol>
+<li>Localiza la dependencia Gson en el POM.</li>
+<li>Busca <code>maven-shade-plugin</code>.</li>
+<li>Ejecuta <code>mvn clean package</code>.</li>
+<li>Comprueba que el JAR resultante funciona desde una terminal.</li>
+</ol>
+<h3 id="autoevaluacion">Autoevaluación<a class="headerlink" href="#autoevaluacion" title="Permanent link">&para;</a></h3>
+<p><strong>1. ¿Qué diferencia existe entre <code>compile</code> y <code>package</code>?</strong></p>
+<details class="success">
+<summary>Mostrar solución</summary>
+<p><code>compile</code> compila las clases principales. <code>package</code> avanza por el ciclo de vida hasta generar el artefacto distribuible y ejecuta las fases anteriores necesarias.</p>
+</details>
+<p><strong>2. ¿Es suficiente con incluir <code>Main-Class</code> para ejecutar una aplicación que utiliza Gson?</strong></p>
+<details class="success">
+<summary>Mostrar solución</summary>
+<p>No necesariamente. <code>Main-Class</code> identifica el punto de entrada, pero la aplicación también debe encontrar Gson durante la ejecución. Podemos proporcionar la biblioteca en el classpath o generar un JAR con dependencias.</p>
+</details>
+<p><strong>3. ¿Qué hace Maven Shade Plugin?</strong></p>
+<details class="success">
+<summary>Mostrar solución</summary>
+<p>Permite combinar el código de la aplicación y las dependencias correspondientes en un JAR, facilitando su distribución. También puede configurar el manifiesto para hacerlo ejecutable.</p>
+</details>
+<p><strong>4. ¿Por qué podría fallar un JAR en un ordenador sin Java?</strong></p>
+<details class="success">
+<summary>Mostrar solución</summary>
+<p>Porque el JAR contiene código Java compilado, pero no necesariamente incluye el entorno de ejecución Java. El equipo necesita una JVM compatible o una distribución que incorpore un runtime.</p>
+</details>
+<h2 id="documentacion-oficial">Documentación oficial<a class="headerlink" href="#documentacion-oficial" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://maven.apache.org/plugins/maven-jar-plugin/">Maven JAR Plugin</a></li>
+<li><a href="https://maven.apache.org/plugins/maven-shade-plugin/">Maven Shade Plugin</a></li>
+<li><a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html">Ciclo de vida de Maven</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

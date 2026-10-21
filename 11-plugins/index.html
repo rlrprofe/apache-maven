@@ -1,0 +1,1939 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Aprender Apache Maven y utilizarlo desde VS Code, Eclipse e IntelliJ IDEA">
+      
+      
+        <meta name="author" content="Material didáctico DAM/DAW">
+      
+      
+        <link rel="canonical" href="https://rlrprofe.github.io/curso-apache-maven/11-plugins/">
+      
+      
+        <link rel="prev" href="../10-comandos/">
+      
+      
+        <link rel="next" href="../12-empaquetado/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>11 · Plugins de Maven - Apache Maven · Minicurso práctico</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11-plugins-de-maven" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Apache Maven · Minicurso práctico" class="md-header__button md-logo" aria-label="Apache Maven · Minicurso práctico" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apache Maven · Minicurso práctico
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11 · Plugins de Maven
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/rlrprofe/curso-apache-maven" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rlrprofe/curso-apache-maven
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apache Maven · Minicurso práctico" class="md-nav__button md-logo" aria-label="Apache Maven · Minicurso práctico" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apache Maven · Minicurso práctico
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/rlrprofe/curso-apache-maven" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rlrprofe/curso-apache-maven
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1 · Fundamentos e instalación
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 1 · Fundamentos e instalación
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Qué es Apache Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-requisitos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Requisitos y preparación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-instalacion-windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Instalación en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-instalacion-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Instalación en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-primer-proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Primer proyecto Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-estructura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Estructura de proyectos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2 · Funcionamiento de Maven
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 2 · Funcionamiento de Maven
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-pom-basico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · El archivo pom.xml
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-ciclo-vida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Ciclo de vida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-dependencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Dependencias y repositorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Comandos esenciales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Plugins de Maven
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Plugins de Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#111-que-es-un-plugin-y-por-que-existe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1. Qué es un plugin y por qué existe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-fase-plugin-y-goal-tres-conceptos-distintos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2. Fase, plugin y goal: tres conceptos distintos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-donde-se-configuran-los-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3. ¿Dónde se configuran los plugins?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#114-por-que-se-ejecutan-plugins-que-no-aparecen-en-mi-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4. ¿Por qué se ejecutan plugins que no aparecen en mi POM?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#115-ejemplo-practico-ejecutar-nuestra-clase-desde-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5. Ejemplo práctico: ejecutar nuestra clase desde Maven
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#116-ejemplo-de-plugin-de-diagnostico-arbol-de-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6. Ejemplo de plugin de diagnóstico: árbol de dependencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#117-que-relacion-tienen-los-plugins-con-las-pruebas-y-los-jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7. ¿Qué relación tienen los plugins con las pruebas y los JAR?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#118-errores-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.8. Errores frecuentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#119-actividad-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.9. Actividad guiada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1110-comprueba-que-lo-has-entendido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.10. Comprueba que lo has entendido
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursos-oficiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursos oficiales
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-empaquetado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Empaquetado con Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3 · Maven desde distintos IDE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 3 · Maven desde distintos IDE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-vscode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Maven en VS Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-eclipse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Maven en Eclipse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-intellij/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · Maven en IntelliJ IDEA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 4 · Prácticas y resolución de problemas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 4 · Prácticas y resolución de problemas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-wrapper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Maven Wrapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-diagnostico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · Errores y diagnóstico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-buenas-practicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Buenas prácticas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-practicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Prácticas guiadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-proyecto-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 · Proyecto integrador
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-evaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 · Autoevaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Material de consulta
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Material de consulta
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anexo-glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anexo-chuleta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chuleta de comandos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../descargas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descargas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#111-que-es-un-plugin-y-por-que-existe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1. Qué es un plugin y por qué existe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-fase-plugin-y-goal-tres-conceptos-distintos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2. Fase, plugin y goal: tres conceptos distintos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-donde-se-configuran-los-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3. ¿Dónde se configuran los plugins?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#114-por-que-se-ejecutan-plugins-que-no-aparecen-en-mi-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4. ¿Por qué se ejecutan plugins que no aparecen en mi POM?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#115-ejemplo-practico-ejecutar-nuestra-clase-desde-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5. Ejemplo práctico: ejecutar nuestra clase desde Maven
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#116-ejemplo-de-plugin-de-diagnostico-arbol-de-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6. Ejemplo de plugin de diagnóstico: árbol de dependencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#117-que-relacion-tienen-los-plugins-con-las-pruebas-y-los-jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7. ¿Qué relación tienen los plugins con las pruebas y los JAR?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#118-errores-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.8. Errores frecuentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#119-actividad-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.9. Actividad guiada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1110-comprueba-que-lo-has-entendido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.10. Comprueba que lo has entendido
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursos-oficiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursos oficiales
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="11-plugins-de-maven">11. Plugins de Maven<a class="headerlink" href="#11-plugins-de-maven" title="Permanent link">&para;</a></h1>
+<p>Cuando comenzamos a utilizar Maven, escribimos órdenes como <code>mvn compile</code>, <code>mvn test</code> o <code>mvn package</code> y obtenemos resultados sin indicar cómo se compila cada clase o cómo se crea un JAR. Esto puede dar la impresión de que Maven incorpora todas esas funciones directamente. En realidad, <strong>Maven coordina el proceso y los plugins realizan muchas de las tareas concretas</strong>.</p>
+<p>En este capítulo aprenderemos a reconocerlos y a configurar uno de ellos. No vamos a desarrollar plugins propios: nos interesa comprender los que se utilizan habitualmente en proyectos Java.</p>
+<p><strong>Al finalizar podrás:</strong> explicar qué es un plugin, distinguir <em>fase</em> y <em>goal</em>, localizar plugins en el <code>pom.xml</code>, configurar un plugin y diagnosticar errores básicos.</p>
+<h2 id="111-que-es-un-plugin-y-por-que-existe">11.1. Qué es un plugin y por qué existe<a class="headerlink" href="#111-que-es-un-plugin-y-por-que-existe" title="Permanent link">&para;</a></h2>
+<p>Un <strong>plugin de Maven</strong> es un componente que añade tareas a la construcción del proyecto. Por ejemplo, hay plugins para compilar, copiar recursos, ejecutar pruebas, generar JAR o producir documentación.</p>
+<p>Piensa en Maven como el <strong>coordinador</strong> de una secuencia de trabajo. El coordinador decide qué tareas corresponden a cada momento y los plugins proporcionan la funcionalidad necesaria para realizarlas.</p>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>Tarea que realiza</th>
+<th>Cuándo lo encontramos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maven-compiler-plugin</code></td>
+<td>Compilar Java</td>
+<td>Al ejecutar <code>mvn compile</code></td>
+</tr>
+<tr>
+<td><code>maven-resources-plugin</code></td>
+<td>Copiar recursos</td>
+<td>Durante la preparación de recursos</td>
+</tr>
+<tr>
+<td><code>maven-surefire-plugin</code></td>
+<td>Ejecutar pruebas unitarias</td>
+<td>Al ejecutar <code>mvn test</code></td>
+</tr>
+<tr>
+<td><code>maven-jar-plugin</code></td>
+<td>Crear el JAR</td>
+<td>En <code>mvn package</code>, para proyectos JAR</td>
+</tr>
+<tr>
+<td><code>maven-clean-plugin</code></td>
+<td>Eliminar resultados anteriores</td>
+<td>Al ejecutar <code>mvn clean</code></td>
+</tr>
+<tr>
+<td><code>maven-dependency-plugin</code></td>
+<td>Examinar dependencias</td>
+<td>Con órdenes como <code>mvn dependency:tree</code></td>
+</tr>
+<tr>
+<td><code>exec-maven-plugin</code></td>
+<td>Ejecutar programas desde Maven</td>
+<td>Al invocar <code>mvn exec:java</code> si está configurado</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">No confundas plugins y dependencias</p>
+<p>Una <strong>dependencia</strong> suele ser una biblioteca que necesita nuestro código, como Gson. Un <strong>plugin</strong> es una herramienta que utiliza Maven durante la construcción. Ambos se declaran mediante coordenadas, pero cumplen funciones diferentes.</p>
+</div>
+<h2 id="112-fase-plugin-y-goal-tres-conceptos-distintos">11.2. Fase, plugin y goal: tres conceptos distintos<a class="headerlink" href="#112-fase-plugin-y-goal-tres-conceptos-distintos" title="Permanent link">&para;</a></h2>
+<p>Estos términos aparecen constantemente en la documentación de Maven:</p>
+<ul>
+<li><strong>Fase (<em>phase</em>):</strong> momento del ciclo de vida, como <code>compile</code>, <code>test</code> o <code>package</code>.</li>
+<li><strong>Plugin:</strong> componente que aporta una o varias tareas.</li>
+<li><strong>Objetivo (<em>goal</em>):</strong> tarea concreta que ofrece un plugin; por ejemplo, <code>compiler:compile</code>.</li>
+</ul>
+<p>Por ejemplo, al ejecutar:</p>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>compile
+</code></pre></div>
+<p>solicitamos la <strong>fase</strong> <code>compile</code>. En un proyecto Java convencional de tipo <code>jar</code>, Maven llega a esa fase ejecutando las tareas vinculadas a ella, entre las que se encuentra el objetivo de compilación del <strong>Maven Compiler Plugin</strong>.</p>
+<p>En cambio, con:</p>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>compiler:compile
+</code></pre></div>
+<p>invocamos directamente un <strong>objetivo</strong> de un plugin. Esta orden <strong>no equivale necesariamente</strong> a recorrer todas las fases anteriores del ciclo de vida, por lo que para el trabajo habitual preferimos <code>mvn compile</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Orden</th>
+<th>Qué solicitamos</th>
+<th>Uso habitual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mvn compile</code></td>
+<td>Una fase del ciclo de vida</td>
+<td>Compilar el proyecto correctamente</td>
+</tr>
+<tr>
+<td><code>mvn test</code></td>
+<td>Una fase del ciclo de vida</td>
+<td>Compilar y ejecutar pruebas</td>
+</tr>
+<tr>
+<td><code>mvn package</code></td>
+<td>Una fase del ciclo de vida</td>
+<td>Obtener el artefacto</td>
+</tr>
+<tr>
+<td><code>mvn dependency:tree</code></td>
+<td>Un goal de plugin</td>
+<td>Inspeccionar las dependencias</td>
+</tr>
+<tr>
+<td><code>mvn help:effective-pom</code></td>
+<td>Un goal de plugin</td>
+<td>Consultar la configuración efectiva</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Qué conviene recordar</p>
+<p>En clase utilizaremos normalmente las <strong>fases</strong> para construir proyectos y algunos <strong>goals</strong> para obtener información o realizar tareas concretas.</p>
+</div>
+<h2 id="113-donde-se-configuran-los-plugins">11.3. ¿Dónde se configuran los plugins?<a class="headerlink" href="#113-donde-se-configuran-los-plugins" title="Permanent link">&para;</a></h2>
+<p>Los plugins que queremos declarar o configurar en nuestro proyecto se sitúan en el archivo <code>pom.xml</code>, dentro de <code>&lt;build&gt;&lt;plugins&gt;</code>.</p>
+<p>Observa el siguiente ejemplo, que fija la versión del plugin de compilación y solicita Java 21:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;build&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;version&gt;</span>3.14.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">            </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">                </span><span class="nt">&lt;release&gt;</span>21<span class="nt">&lt;/release&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div>
+<p><strong>Vamos a interpretar cada elemento:</strong></p>
+<ol>
+<li><code>&lt;build&gt;</code> agrupa opciones de construcción del proyecto.</li>
+<li><code>&lt;plugins&gt;</code> contiene los plugins declarados.</li>
+<li><code>&lt;plugin&gt;</code> representa un plugin concreto.</li>
+<li><code>groupId</code> y <code>artifactId</code> lo identifican.</li>
+<li><code>version</code> fija la versión del plugin, para evitar depender de una elección implícita.</li>
+<li><code>&lt;configuration&gt;</code> contiene las opciones que admite ese plugin.</li>
+<li><code>&lt;release&gt;21&lt;/release&gt;</code> configura el compilador para generar código dirigido a Java 21.</li>
+</ol>
+<p><strong>¿Debemos escribir siempre todo esto?</strong> No. Para proyectos sencillos del curso basta normalmente con establecer en <code>&lt;properties&gt;</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;properties&gt;</span>
+<span class="w">    </span><span class="nt">&lt;maven.compiler.release&gt;</span>21<span class="nt">&lt;/maven.compiler.release&gt;</span>
+<span class="w">    </span><span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div>
+<p>La propiedad <code>maven.compiler.release</code> es reconocida por versiones actuales del plugin de compilación. Configurar explícitamente el plugin tiene sentido cuando queremos fijar su versión o ajustar opciones adicionales.</p>
+<h2 id="114-por-que-se-ejecutan-plugins-que-no-aparecen-en-mi-pom">11.4. ¿Por qué se ejecutan plugins que no aparecen en mi POM?<a class="headerlink" href="#114-por-que-se-ejecutan-plugins-que-no-aparecen-en-mi-pom" title="Permanent link">&para;</a></h2>
+<p>Este comportamiento suele sorprender. Creamos un proyecto Maven muy sencillo, sin escribir ningún plugin, y <code>mvn package</code> compila las clases, prepara recursos y crea un JAR.</p>
+<p>Sucede porque Maven define <strong>vinculaciones predeterminadas entre fases y objetivos</strong> según el tipo de empaquetado del proyecto. En un proyecto <code>jar</code>, determinadas tareas ya están asociadas a fases habituales.</p>
+<p>Por tanto, <strong>que un plugin no aparezca escrito en nuestro POM no significa que Maven no lo utilice</strong>.</p>
+<p>Podemos investigar la configuración que interpreta Maven mediante:</p>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>help:effective-pom<span class="w"> </span>-Doutput<span class="o">=</span>pom-efectivo.xml
+</code></pre></div>
+<p>Abre <code>pom-efectivo.xml</code> y busca <code>maven-compiler-plugin</code>. El archivo permite consultar la configuración resultante. <strong>No debes editar el POM efectivo:</strong> modifica el <code>pom.xml</code> original.</p>
+<h2 id="115-ejemplo-practico-ejecutar-nuestra-clase-desde-maven">11.5. Ejemplo práctico: ejecutar nuestra clase desde Maven<a class="headerlink" href="#115-ejemplo-practico-ejecutar-nuestra-clase-desde-maven" title="Permanent link">&para;</a></h2>
+<p>Imagina un proyecto con esta clase en <code>src/main/java/es/dam/App.java</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">es.dam</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">App</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Hola desde Maven"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Si queremos ejecutar esta clase desde Maven, podemos utilizar <code>exec-maven-plugin</code>.</p>
+<p><strong>Paso 1.</strong> Añade dentro del <code>pom.xml</code>, como hijo directo de <code>&lt;project&gt;</code>, el bloque:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;build&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;version&gt;</span>3.5.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">            </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">                </span><span class="nt">&lt;mainClass&gt;</span>es.dam.App<span class="nt">&lt;/mainClass&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div>
+<p><strong>Paso 2.</strong> Guarda el archivo y abre la terminal en la carpeta que contiene <code>pom.xml</code>.</p>
+<p><strong>Paso 3.</strong> Compila el proyecto:</p>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>compile
+</code></pre></div>
+<p><strong>Paso 4.</strong> Ejecuta la clase:</p>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>exec:java
+</code></pre></div>
+<p>Deberías ver <code>Hola desde Maven</code> entre los mensajes de ejecución.</p>
+<p><strong>¿Qué hemos conseguido?</strong> Maven ha invocado un goal de un plugin que permite ejecutar una clase Java. No hemos generado un programa instalable ni un JAR que incluya todas las dependencias. Son tareas diferentes.</p>
+<div class="admonition warning">
+<p class="admonition-title">Si ya tienes una sección <code>&lt;build&gt;</code></p>
+<p>No crees dos secciones <code>&lt;build&gt;</code> en el mismo POM. Añade el nuevo <code>&lt;plugin&gt;</code> dentro del bloque <code>&lt;plugins&gt;</code> existente.</p>
+</div>
+<h2 id="116-ejemplo-de-plugin-de-diagnostico-arbol-de-dependencias">11.6. Ejemplo de plugin de diagnóstico: árbol de dependencias<a class="headerlink" href="#116-ejemplo-de-plugin-de-diagnostico-arbol-de-dependencias" title="Permanent link">&para;</a></h2>
+<p>No todos los plugins modifican archivos. Algunos sirven para <strong>investigar el proyecto</strong>. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>dependency:tree
+</code></pre></div>
+<p>Esta orden muestra las dependencias directas y transitivas. Es útil cuando una biblioteca incorpora otras bibliotecas y queremos comprender qué está resolviendo Maven.</p>
+<p>Este es un buen ejemplo de un <em>goal</em> que invocamos directamente sin pedir una fase como <code>compile</code> o <code>package</code>.</p>
+<h2 id="117-que-relacion-tienen-los-plugins-con-las-pruebas-y-los-jar">11.7. ¿Qué relación tienen los plugins con las pruebas y los JAR?<a class="headerlink" href="#117-que-relacion-tienen-los-plugins-con-las-pruebas-y-los-jar" title="Permanent link">&para;</a></h2>
+<p>Durante <code>mvn test</code>, Maven puede ejecutar pruebas Java mediante <code>maven-surefire-plugin</code>. El framework de pruebas, por ejemplo JUnit, <strong>es una dependencia externa</strong>, mientras que Surefire es el <strong>plugin que las ejecuta</strong>. No necesitamos estudiar JUnit en profundidad para comprender esta relación.</p>
+<p>De forma parecida, en un proyecto con empaquetado <code>jar</code>, Maven utiliza <code>maven-jar-plugin</code> para crear el archivo de salida durante <code>mvn package</code>. En el capítulo de empaquetado veremos qué contiene ese JAR y qué ocurre con sus dependencias.</p>
+<h2 id="118-errores-frecuentes">11.8. Errores frecuentes<a class="headerlink" href="#118-errores-frecuentes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Causa habitual</th>
+<th>Qué revisar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Plugin ... could not be resolved</code></td>
+<td>Descarga fallida, repositorio inaccesible o coordenadas incorrectas</td>
+<td>Conexión, proxy, versión y repositorios</td>
+</tr>
+<tr>
+<td><code>No plugin found for prefix</code></td>
+<td>Maven no localiza el plugin invocado por su prefijo</td>
+<td>Nombre, coordenadas y configuración</td>
+</tr>
+<tr>
+<td><code>ClassNotFoundException</code> al ejecutar <code>exec:java</code></td>
+<td>Clase principal mal escrita o proyecto no compilado</td>
+<td>Paquete, <code>mainClass</code> y <code>mvn compile</code></td>
+</tr>
+<tr>
+<td><code>release version 21 not supported</code></td>
+<td>Compilador utilizado no compatible con Java 21</td>
+<td>JDK y <code>mvn -version</code>; toolchains si existen</td>
+</tr>
+<tr>
+<td>XML inválido al añadir un plugin</td>
+<td>Etiquetas mal cerradas o segundo bloque <code>&lt;build&gt;</code></td>
+<td>Estructura del <code>pom.xml</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="119-actividad-guiada">11.9. Actividad guiada<a class="headerlink" href="#119-actividad-guiada" title="Permanent link">&para;</a></h2>
+<p>En un proyecto Java Maven sencillo:</p>
+<ol>
+<li>Comprueba que <code>mvn -version</code> muestra un entorno Java adecuado.</li>
+<li>Ejecuta <code>mvn clean compile</code>.</li>
+<li>Añade y configura <code>exec-maven-plugin</code> para ejecutar tu clase principal.</li>
+<li>Ejecuta <code>mvn exec:java</code>.</li>
+<li>Ejecuta <code>mvn dependency:tree</code>.</li>
+<li>Explica por escrito qué órdenes ejecutan <strong>fases</strong> y cuáles ejecutan <strong>goals</strong>.</li>
+</ol>
+<details class="success">
+<summary>Solución orientativa</summary>
+<ul>
+<li><code>mvn clean compile</code> invoca fases de los ciclos <code>clean</code> y <code>default</code>.</li>
+<li><code>mvn exec:java</code> invoca el objetivo <code>java</code> del plugin <code>exec-maven-plugin</code>.</li>
+<li><code>mvn dependency:tree</code> invoca el objetivo <code>tree</code> del plugin <code>maven-dependency-plugin</code>.</li>
+<li>El plugin de ejecución no sustituye al empaquetado: permite ejecutar una clase desde Maven.</li>
+</ul>
+</details>
+<h2 id="1110-comprueba-que-lo-has-entendido">11.10. Comprueba que lo has entendido<a class="headerlink" href="#1110-comprueba-que-lo-has-entendido" title="Permanent link">&para;</a></h2>
+<p><strong>1. ¿Maven compila Java por sí solo o utiliza un plugin?</strong></p>
+<details class="success">
+<summary>Mostrar solución</summary>
+<p>Maven coordina la construcción. La tarea de compilación la proporciona el <code>maven-compiler-plugin</code>, que utiliza las herramientas de compilación Java correspondientes.</p>
+</details>
+<p><strong>2. ¿<code>mvn package</code> es un goal de plugin?</strong></p>
+<details class="success">
+<summary>Mostrar solución</summary>
+<p>No. <code>package</code> es una fase del ciclo de vida. Para completarla Maven ejecuta las tareas asociadas a las fases necesarias, utilizando plugins.</p>
+</details>
+<p><strong>3. ¿Una dependencia Gson y el plugin Surefire cumplen la misma función?</strong></p>
+<details class="success">
+<summary>Mostrar solución</summary>
+<p>No. Gson es una biblioteca que puede utilizar nuestro programa. Surefire es un plugin que Maven emplea para ejecutar pruebas.</p>
+</details>
+<p><strong>4. ¿Por qué puede funcionar <code>mvn compile</code> sin declarar el plugin en el POM?</strong></p>
+<details class="success">
+<summary>Mostrar solución</summary>
+<p>Porque Maven dispone de vinculaciones predeterminadas entre fases y objetivos de plugins para tipos de proyecto habituales, como <code>jar</code>.</p>
+</details>
+<p><strong>5. ¿Qué archivo modificamos si queremos cambiar la configuración de un plugin?</strong></p>
+<details class="success">
+<summary>Mostrar solución</summary>
+<p>El <code>pom.xml</code> del proyecto (o su POM padre si hereda esa configuración), no el POM efectivo generado.</p>
+</details>
+<h2 id="recursos-oficiales">Recursos oficiales<a class="headerlink" href="#recursos-oficiales" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://maven.apache.org/guides/introduction/introduction-to-plugins.html">Introducción a los plugins de Maven</a></li>
+<li><a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html">Referencia del ciclo de vida</a></li>
+<li><a href="https://maven.apache.org/plugins/maven-compiler-plugin/">Maven Compiler Plugin</a></li>
+<li><a href="https://maven.apache.org/surefire/maven-surefire-plugin/">Maven Surefire Plugin</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

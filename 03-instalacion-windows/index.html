@@ -1,0 +1,1863 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Aprender Apache Maven y utilizarlo desde VS Code, Eclipse e IntelliJ IDEA">
+      
+      
+        <meta name="author" content="Material didáctico DAM/DAW">
+      
+      
+        <link rel="canonical" href="https://rlrprofe.github.io/curso-apache-maven/03-instalacion-windows/">
+      
+      
+        <link rel="prev" href="../02-requisitos/">
+      
+      
+        <link rel="next" href="../04-instalacion-linux/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>03 · Instalación en Windows - Apache Maven · Minicurso práctico</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-instalacion-en-windows" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Apache Maven · Minicurso práctico" class="md-header__button md-logo" aria-label="Apache Maven · Minicurso práctico" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apache Maven · Minicurso práctico
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              03 · Instalación en Windows
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/rlrprofe/curso-apache-maven" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rlrprofe/curso-apache-maven
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apache Maven · Minicurso práctico" class="md-nav__button md-logo" aria-label="Apache Maven · Minicurso práctico" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apache Maven · Minicurso práctico
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/rlrprofe/curso-apache-maven" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rlrprofe/curso-apache-maven
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1 · Fundamentos e instalación
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 1 · Fundamentos e instalación
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Qué es Apache Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-requisitos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Requisitos y preparación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Instalación en Windows
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Instalación en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-que-version-de-java-necesita-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. ¿Qué versión de Java necesita Maven?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-ejecutar-maven-no-es-lo-mismo-que-compilar-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Ejecutar Maven no es lo mismo que compilar Java
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-paso-1-instalar-y-comprobar-el-jdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Paso 1. Instalar y comprobar el JDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-paso-2-descargar-y-descomprimir-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Paso 2. Descargar y descomprimir Maven
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-paso-3-configurar-las-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Paso 3. Configurar las variables de entorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-paso-4-verificar-la-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Paso 4. Verificar la instalación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-paso-5-probar-maven-con-un-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. Paso 5. Probar Maven con un proyecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-errores-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8. Errores frecuentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#39-actividades-de-autoevaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9. Actividades de autoevaluación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#310-recursos-oficiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10. Recursos oficiales
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-instalacion-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Instalación en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-primer-proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Primer proyecto Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-estructura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Estructura de proyectos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2 · Funcionamiento de Maven
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 2 · Funcionamiento de Maven
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-pom-basico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · El archivo pom.xml
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-ciclo-vida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Ciclo de vida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-dependencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Dependencias y repositorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Comandos esenciales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Plugins de Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-empaquetado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Empaquetado con Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3 · Maven desde distintos IDE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 3 · Maven desde distintos IDE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-vscode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Maven en VS Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-eclipse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Maven en Eclipse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-intellij/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · Maven en IntelliJ IDEA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 4 · Prácticas y resolución de problemas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bloque 4 · Prácticas y resolución de problemas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-wrapper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Maven Wrapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-diagnostico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · Errores y diagnóstico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-buenas-practicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Buenas prácticas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-practicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Prácticas guiadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-proyecto-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 · Proyecto integrador
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-evaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 · Autoevaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Material de consulta
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Material de consulta
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anexo-glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anexo-chuleta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chuleta de comandos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../descargas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descargas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-que-version-de-java-necesita-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. ¿Qué versión de Java necesita Maven?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-ejecutar-maven-no-es-lo-mismo-que-compilar-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Ejecutar Maven no es lo mismo que compilar Java
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-paso-1-instalar-y-comprobar-el-jdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Paso 1. Instalar y comprobar el JDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-paso-2-descargar-y-descomprimir-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Paso 2. Descargar y descomprimir Maven
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-paso-3-configurar-las-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Paso 3. Configurar las variables de entorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-paso-4-verificar-la-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Paso 4. Verificar la instalación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-paso-5-probar-maven-con-un-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. Paso 5. Probar Maven con un proyecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-errores-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8. Errores frecuentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#39-actividades-de-autoevaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9. Actividades de autoevaluación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#310-recursos-oficiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10. Recursos oficiales
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="3-instalacion-en-windows">3. Instalación en Windows<a class="headerlink" href="#3-instalacion-en-windows" title="Permanent link">&para;</a></h1>
+<p><strong>Objetivos de aprendizaje</strong></p>
+<p>Al finalizar este apartado podrás identificar los requisitos de Java de distintas versiones de Maven, instalar ambas herramientas en Windows, configurar las variables de entorno, comprobar la instalación y resolver los problemas más frecuentes.</p>
+<h2 id="31-que-version-de-java-necesita-maven">3.1. ¿Qué versión de Java necesita Maven?<a class="headerlink" href="#31-que-version-de-java-necesita-maven" title="Permanent link">&para;</a></h2>
+<p>Apache Maven está desarrollado en Java y necesita una instalación compatible de Java para ejecutarse. <strong>No exige necesariamente JDK 21</strong>: el requisito depende de la versión de Maven.</p>
+<table>
+<thead>
+<tr>
+<th>Versión de Maven</th>
+<th>Java mínimo para ejecutar Maven</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maven 3.8.x</td>
+<td>Java 7</td>
+<td>Rama antigua; no recomendada para nuevas instalaciones.</td>
+</tr>
+<tr>
+<td>Maven 3.9.x</td>
+<td>Java 8</td>
+<td>Rama Maven 3, adecuada para este curso.</td>
+</tr>
+<tr>
+<td>Maven 4.x</td>
+<td>Java 17</td>
+<td>Comprueba el estado y los requisitos de la versión concreta antes de instalarla.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Versión utilizada en este curso</p>
+<p>Para las prácticas trabajaremos con <strong>JDK 21</strong> y una versión estable de <strong>Apache Maven 3</strong> (por ejemplo, Maven 3.9.x). Java 21 es nuestra elección para desarrollar los proyectos, <strong>no el mínimo exigido por Maven 3</strong>.</p>
+</div>
+<p>Consulta siempre los requisitos de la versión descargada en la <a href="https://maven.apache.org/install.html">documentación oficial</a> y las <a href="https://maven.apache.org/download.cgi">descargas oficiales</a>.</p>
+<h2 id="32-ejecutar-maven-no-es-lo-mismo-que-compilar-java">3.2. Ejecutar Maven no es lo mismo que compilar Java<a class="headerlink" href="#32-ejecutar-maven-no-es-lo-mismo-que-compilar-java" title="Permanent link">&para;</a></h2>
+<p>Al ejecutar <code>mvn -version</code>, Maven informa de <strong>su propia versión</strong> y de la <strong>versión de Java con la que se está ejecutando</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mvn</span> <span class="n">-version</span>
+</code></pre></div>
+<p>Ejemplo orientativo de salida:</p>
+<div class="highlight"><pre><span></span><code>Apache Maven 3.9.9
+Maven home: C:\apache-maven-3.9.9
+Java version: 21.0.x
+Java home: C:\jdk-21
+OS name: "windows 11"
+</code></pre></div>
+<p>En cambio, cuando ejecutas <code>mvn compile</code>, Maven coordina la compilación mediante un plugin y un compilador Java. Si el <code>pom.xml</code> contiene:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;properties&gt;</span>
+<span class="w">    </span><span class="nt">&lt;maven.compiler.release&gt;</span>21<span class="nt">&lt;/maven.compiler.release&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div>
+<p>el proyecto se compila para <strong>Java 21</strong>, por lo que se necesita acceso a un compilador compatible (habitualmente JDK 21 o posterior). Maven puede configurarse para utilizar otro JDK de compilación mediante <strong>Maven Toolchains</strong>.</p>
+<div class="admonition example">
+<p class="admonition-title">Dos versiones que no debes confundir</p>
+<ul>
+<li><strong>Java que ejecuta Maven:</strong> aparece en <code>mvn -version</code>.</li>
+<li><strong>Java objetivo del proyecto:</strong> se indica, por ejemplo, mediante <code>maven.compiler.release</code> en <code>pom.xml</code>.</li>
+</ul>
+</div>
+<h2 id="33-paso-1-instalar-y-comprobar-el-jdk">3.3. Paso 1. Instalar y comprobar el JDK<a class="headerlink" href="#33-paso-1-instalar-y-comprobar-el-jdk" title="Permanent link">&para;</a></h2>
+<p>Para este curso instala un <strong>JDK 21</strong> desde una distribución de OpenJDK, por ejemplo <a href="https://adoptium.net/">Eclipse Temurin</a>.</p>
+<p>Abre PowerShell y ejecuta:</p>
+<div class="highlight"><pre><span></span><code><span class="n">java</span> <span class="n">-version</span>
+<span class="n">javac</span> <span class="n">-version</span>
+</code></pre></div>
+<ul>
+<li><code>java -version</code> indica la versión de Java invocada desde la terminal.</li>
+<li><code>javac -version</code> indica la versión del compilador Java.</li>
+</ul>
+<p>Si <code>javac</code> no está disponible, revisa si has instalado un <strong>JDK</strong> y no solo un entorno de ejecución.</p>
+<p>En los siguientes ejemplos supondremos que el JDK está en <code>C:\jdk-21</code>. <strong>Sustituye esta ruta por la real de tu equipo.</strong></p>
+<h2 id="34-paso-2-descargar-y-descomprimir-maven">3.4. Paso 2. Descargar y descomprimir Maven<a class="headerlink" href="#34-paso-2-descargar-y-descomprimir-maven" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Abre <a href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a>.</li>
+<li>Descarga el <strong>Binary zip archive</strong> de una versión estable de Maven 3; por ejemplo, <code>apache-maven-3.9.9-bin.zip</code>.</li>
+<li>Descomprime el archivo, por ejemplo, en <code>C:\apache-maven-3.9.9</code>.</li>
+<li>Comprueba que dentro de la carpeta existe <code>bin\mvn.cmd</code>.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>C:\apache-maven-3.9.9\
+├── bin\
+├── boot\
+├── conf\
+└── lib\
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">¿Por qué descargamos el ZIP binario?</p>
+<p>Contiene Maven preparado para ejecutarse. El archivo <em>source</em> contiene el código fuente de Maven y no es necesario para instalarlo.</p>
+</div>
+<h2 id="35-paso-3-configurar-las-variables-de-entorno">3.5. Paso 3. Configurar las variables de entorno<a class="headerlink" href="#35-paso-3-configurar-las-variables-de-entorno" title="Permanent link">&para;</a></h2>
+<p>En Windows, busca <strong>Editar las variables de entorno del sistema</strong> y abre <strong>Variables de entorno</strong>.</p>
+<p>Configura estas variables con las rutas reales:</p>
+<div class="highlight"><pre><span></span><code>JAVA_HOME=C:\jdk-21
+MAVEN_HOME=C:\apache-maven-3.9.9
+</code></pre></div>
+<p>En la variable <code>Path</code>, añade:</p>
+<div class="highlight"><pre><span></span><code>%JAVA_HOME%\bin
+%MAVEN_HOME%\bin
+</code></pre></div>
+<p><code>JAVA_HOME</code> debe apuntar a la <strong>raíz del JDK</strong>, no a su carpeta <code>bin</code>. <code>MAVEN_HOME</code> es útil para identificar la instalación, aunque no es imprescindible si añades directamente la carpeta <code>bin</code> de Maven al <code>Path</code>.</p>
+<p>Cierra PowerShell y abre una terminal nueva para que se apliquen los cambios.</p>
+<h2 id="36-paso-4-verificar-la-instalacion">3.6. Paso 4. Verificar la instalación<a class="headerlink" href="#36-paso-4-verificar-la-instalacion" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">java</span> <span class="n">-version</span>
+<span class="n">javac</span> <span class="n">-version</span>
+<span class="n">mvn</span> <span class="n">-version</span>
+</code></pre></div>
+<p>Comprueba que aparecen las versiones esperadas. Para inspeccionar las rutas utilizadas:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$env:JAVA_HOME</span>
+<span class="nv">$env:MAVEN_HOME</span>
+<span class="nb">Get-Command</span> <span class="n">mvn</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Dato de <code>mvn -version</code></th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Apache Maven</code></td>
+<td>Versión instalada de Maven.</td>
+</tr>
+<tr>
+<td><code>Maven home</code></td>
+<td>Carpeta desde la que se ejecuta Maven.</td>
+</tr>
+<tr>
+<td><code>Java version</code></td>
+<td>Versión de Java con la que se ejecuta Maven.</td>
+</tr>
+<tr>
+<td><code>Java home</code></td>
+<td>Ubicación de ese Java.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="37-paso-5-probar-maven-con-un-proyecto">3.7. Paso 5. Probar Maven con un proyecto<a class="headerlink" href="#37-paso-5-probar-maven-con-un-proyecto" title="Permanent link">&para;</a></h2>
+<p>Sitúate en la carpeta de un proyecto que contenga <code>pom.xml</code> y ejecuta:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mvn</span> <span class="n">validate</span>
+<span class="n">mvn</span> <span class="n">compile</span>
+<span class="n">mvn</span> <span class="n">test</span>
+<span class="n">mvn</span> <span class="n">package</span>
+</code></pre></div>
+<ul>
+<li><code>validate</code>: comprueba la configuración básica del proyecto.</li>
+<li><code>compile</code>: compila el código principal.</li>
+<li><code>test</code>: ejecuta las pruebas configuradas.</li>
+<li><code>package</code>: genera el artefacto, normalmente un archivo JAR.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">La primera ejecución puede tardar</p>
+<p>Maven puede necesitar descargar plugins y dependencias. Esto es normal cuando todavía no están en el repositorio local.</p>
+</div>
+<h2 id="38-errores-frecuentes">3.8. Errores frecuentes<a class="headerlink" href="#38-errores-frecuentes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Posible causa</th>
+<th>Qué comprobar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mvn</code> no se reconoce</td>
+<td>Maven no está en <code>Path</code>.</td>
+<td>Que <code>%MAVEN_HOME%\bin</code> exista y esté en <code>Path</code>.</td>
+</tr>
+<tr>
+<td><code>JAVA_HOME</code> no está definido correctamente</td>
+<td>Ruta inexistente o apunta a <code>bin</code>.</td>
+<td>Que apunte a la raíz del JDK.</td>
+</tr>
+<tr>
+<td><code>javac</code> no se reconoce</td>
+<td>JDK ausente o <code>Path</code> incorrecto.</td>
+<td>Instalación y ruta <code>%JAVA_HOME%\bin</code>.</td>
+</tr>
+<tr>
+<td>Maven utiliza otro Java</td>
+<td>Hay varias instalaciones de Java.</td>
+<td><code>mvn -version</code> y <code>JAVA_HOME</code>.</td>
+</tr>
+<tr>
+<td><code>release version 21 not supported</code></td>
+<td>El compilador no admite Java 21.</td>
+<td>JDK utilizado para compilar y configuración de Toolchains.</td>
+</tr>
+<tr>
+<td>Error descargando dependencias</td>
+<td>Red, proxy o repositorio.</td>
+<td>Conexión y configuración de Maven.</td>
+</tr>
+<tr>
+<td>No se encuentra <code>pom.xml</code></td>
+<td>Terminal en carpeta incorrecta.</td>
+<td>Ejecutar desde la raíz del proyecto.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="39-actividades-de-autoevaluacion">3.9. Actividades de autoevaluación<a class="headerlink" href="#39-actividades-de-autoevaluacion" title="Permanent link">&para;</a></h2>
+<p><strong>1. ¿Puede Maven 3.9 ejecutarse con Java 17?</strong></p>
+<details class="success">
+<summary>Mostrar solución · Actividad 1</summary>
+<p>Sí. Maven 3.9 requiere como mínimo Java 8, por lo que Java 17 es compatible.</p>
+</details>
+<p><strong>2. ¿Por qué utilizamos JDK 21 en este curso?</strong></p>
+<details class="success">
+<summary>Mostrar solución · Actividad 2</summary>
+<p>Porque es la versión elegida para desarrollar y compilar los proyectos de las prácticas, no porque sea el mínimo exigido por Maven 3.</p>
+</details>
+<p><strong>3. ¿Qué información proporciona <code>mvn -version</code>?</strong></p>
+<details class="success">
+<summary>Mostrar solución · Actividad 3</summary>
+<p>Muestra la <strong>versión de Apache Maven</strong> y datos de su entorno, incluidos la versión y la ubicación de Java con la que Maven se ejecuta.</p>
+</details>
+<p><strong>4. Si un proyecto contiene <code>&lt;maven.compiler.release&gt;21&lt;/maven.compiler.release&gt;</code>, ¿significa que Maven necesita Java 21 para ejecutarse?</strong></p>
+<details class="success">
+<summary>Mostrar solución · Actividad 4</summary>
+<p>No. Esa propiedad indica la versión objetivo del proyecto. Maven puede ejecutarse con otra versión compatible de Java, pero para compilar necesitará un compilador que admita Java 21.</p>
+</details>
+<p><strong>5. ¿Por qué debes abrir otra terminal tras modificar las variables de entorno?</strong></p>
+<details class="success">
+<summary>Mostrar solución · Actividad 5</summary>
+<p>Porque una terminal abierta antes del cambio puede seguir utilizando las variables anteriores.</p>
+</details>
+<h2 id="310-recursos-oficiales">3.10. Recursos oficiales<a class="headerlink" href="#310-recursos-oficiales" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://maven.apache.org/download.cgi">Descarga de Apache Maven</a></li>
+<li><a href="https://maven.apache.org/install.html">Instalación oficial</a></li>
+<li><a href="https://maven.apache.org/docs/history.html">Historial de versiones</a></li>
+<li><a href="https://maven.apache.org/guides/">Documentación de Maven</a></li>
+<li><a href="https://adoptium.net/">Eclipse Temurin / OpenJDK</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
