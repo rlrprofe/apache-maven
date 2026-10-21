@@ -1,0 +1,68 @@
+site_name: Apache Maven · Minicurso práctico
+site_description: Aprender Apache Maven y utilizarlo desde VS Code, Eclipse e IntelliJ IDEA
+site_author: Material didáctico DAM/DAW
+site_url: https://rlrprofe.github.io/curso-apache-maven/
+repo_url: https://github.com/rlrprofe/curso-apache-maven
+repo_name: rlrprofe/curso-apache-maven
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+nav:
+  - Inicio: index.md
+  - "Bloque 1 · Fundamentos e instalación":
+      - "01 · Qué es Apache Maven": 01-introduccion.md
+      - "02 · Requisitos y preparación": 02-requisitos.md
+      - "03 · Instalación en Windows": 03-instalacion-windows.md
+      - "04 · Instalación en Linux": 04-instalacion-linux.md
+      - "05 · Primer proyecto Maven": 05-primer-proyecto.md
+      - "06 · Estructura de proyectos": 06-estructura.md
+  - "Bloque 2 · Funcionamiento de Maven":
+      - "07 · El archivo pom.xml": 07-pom-basico.md
+      - "08 · Ciclo de vida": 08-ciclo-vida.md
+      - "09 · Dependencias y repositorios": 09-dependencias.md
+      - "10 · Comandos esenciales": 10-comandos.md
+      - "11 · Plugins de Maven": 11-plugins.md
+      - "12 · Empaquetado con Maven": 12-empaquetado.md
+  - "Bloque 3 · Maven desde distintos IDE":
+      - "13 · Maven en VS Code": 13-vscode.md
+      - "14 · Maven en Eclipse": 14-eclipse.md
+      - "15 · Maven en IntelliJ IDEA": 15-intellij.md
+  - "Bloque 4 · Prácticas y resolución de problemas":
+      - "16 · Maven Wrapper": 16-wrapper.md
+      - "17 · Errores y diagnóstico": 17-diagnostico.md
+      - "18 · Buenas prácticas": 18-buenas-practicas.md
+      - "19 · Prácticas guiadas": 19-practicas.md
+      - "20 · Proyecto integrador": 20-proyecto-final.md
+      - "21 · Autoevaluación": 21-evaluacion.md
+  - "Material de consulta":
+      - "Glosario": anexo-glosario.md
+      - "Chuleta de comandos": anexo-chuleta.md
+      - "Descargas": descargas.md
